@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+  postgres:
+    image: bitnami/postgresql:latest
+    container_name: dev-postgres-zeelus
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRESQL_USERNAME=zeelusUser
+      - POSTGRESQL_PASSWORD=zeelusPassword
+      - POSTGRESQL_DATABASE=zeelusDB
