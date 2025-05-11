@@ -18,18 +18,18 @@ public class CadastrarAcompanhanteService {
 
     @Transactional
     public AcompanhanteEntity execute(CadastrarAcompanhanteDTO cadastrarAcompanhanteDTO){
-        this.acompanhanteRepository.findByEmail(cadastrarAcompanhanteDTO.email())
+        this.acompanhanteRepository.findByEmail(cadastrarAcompanhanteDTO.getEmail())
                 .ifPresent(value -> {
                     throw new RuntimeException("E-mail já foi cadastrado!");
                 });
 
-        String password = passwordEncoder.encode(cadastrarAcompanhanteDTO.senha());
+        String password = passwordEncoder.encode(cadastrarAcompanhanteDTO.getSenha());
 
         AcompanhanteEntity acompanhante = AcompanhanteEntity.builder()
-                .nome_acompanhante(cadastrarAcompanhanteDTO.nome_acompanhante())
-                .email(cadastrarAcompanhanteDTO.email())
+                .nome_acompanhante(cadastrarAcompanhanteDTO.getNome_acompanhante())
+                .email(cadastrarAcompanhanteDTO.getEmail())
                 .senha(password)
-                .urlImg(cadastrarAcompanhanteDTO.urlImg())
+                .urlImg(cadastrarAcompanhanteDTO.getUrlImg())
                 .build();
 
         return this.acompanhanteRepository.save(acompanhante);
