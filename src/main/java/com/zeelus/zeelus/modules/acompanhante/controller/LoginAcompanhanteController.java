@@ -2,6 +2,7 @@ package com.zeelus.zeelus.modules.acompanhante.controller;
 
 import com.zeelus.zeelus.modules.acompanhante.AcompanhanteEntity;
 import com.zeelus.zeelus.modules.acompanhante.dto.LoginAcompanhanteDTO;
+import com.zeelus.zeelus.modules.acompanhante.dto.LoginAcompanhanteResponseDTO;
 import com.zeelus.zeelus.modules.acompanhante.service.LoginAcompanhanteService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class LoginAcompanhanteController {
     @PostMapping("/login")
     public ResponseEntity<Object> loginAcompanhante(@Valid @RequestBody LoginAcompanhanteDTO acompanhanteDTO){
         try{
-            AcompanhanteEntity result = this.acompanhanteService.execute(acompanhanteDTO);
+            LoginAcompanhanteResponseDTO result = this.acompanhanteService.execute(acompanhanteDTO);
 
             return ResponseEntity.status(HttpStatusCode.valueOf(200)).body("Login realizado");
 
