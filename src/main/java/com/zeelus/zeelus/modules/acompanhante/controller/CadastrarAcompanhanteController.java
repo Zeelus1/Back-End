@@ -28,7 +28,9 @@ public class CadastrarAcompanhanteController {
 
             return ResponseEntity.status(HttpStatusCode.valueOf(201)).body(respostaDTO);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatusCode.valueOf(400)).body(e.getMessage());
+            RespostaDTO respostaDTO = new RespostaDTO("", e.getMessage());
+
+            return ResponseEntity.status(HttpStatusCode.valueOf(400)).body(respostaDTO);
         }
     }
 }

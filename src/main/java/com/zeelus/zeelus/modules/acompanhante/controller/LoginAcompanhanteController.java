@@ -3,6 +3,7 @@ package com.zeelus.zeelus.modules.acompanhante.controller;
 import com.zeelus.zeelus.modules.acompanhante.AcompanhanteEntity;
 import com.zeelus.zeelus.modules.acompanhante.dto.LoginAcompanhanteDTO;
 import com.zeelus.zeelus.modules.acompanhante.dto.LoginAcompanhanteResponseDTO;
+import com.zeelus.zeelus.modules.acompanhante.dto.RespostaDTO;
 import com.zeelus.zeelus.modules.acompanhante.service.LoginAcompanhanteService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +25,15 @@ public class LoginAcompanhanteController {
         try{
             LoginAcompanhanteResponseDTO result = this.acompanhanteService.execute(acompanhanteDTO);
 
-            return ResponseEntity.status(HttpStatusCode.valueOf(200)).body("Login realizado");
+            RespostaDTO respostaDTO = new RespostaDTO(result, "Login realizado");
+
+            return ResponseEntity.status(HttpStatusCode.valueOf(200)).body(respostaDTO);
 
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatusCode.valueOf(401)).body(e.getMessage());
+
+            RespostaDTO respostaDTO = new RespostaDTO("", e.getMessage());
+
+            return ResponseEntity.status(HttpStatusCode.valueOf(401)).body(respostaDTO);
         }
     }
 }
