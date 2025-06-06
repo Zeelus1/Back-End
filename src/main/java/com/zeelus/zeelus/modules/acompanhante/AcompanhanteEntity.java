@@ -1,9 +1,6 @@
 package com.zeelus.zeelus.modules.acompanhante;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -24,6 +21,7 @@ import java.util.UUID;
 @Builder
 @Entity(name = "tbl_acompanhante")
 @DynamicUpdate
+@Table(name = "tbl_acompanhante", schema = "public")
 public class AcompanhanteEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
