@@ -136,7 +136,7 @@ Oferecer suporte e ferramentas essenciais aos acompanhantes, tornando a experiê
 ## 👥 Desenvolvedores
 
 - [Andrey Sebastian Justino](https://www.linkedin.com/in/andrey-sebastian-justino/) - Product Owner e Desenvolvedor Full-Stack
-- [Laysla Rayssa Alves dos Santos](https://www.linkedin.com/in/laysla-alves-16350b274/) - Scruum Master e Desenvolvedora Front-End
+- [Laysla Rayssa Alves dos Santos](https://www.linkedin.com/in/laysla-alves-16350b274/) - Scrum Master e Desenvolvedora Front-End
 - [Livia Ribeiro Alvarenga](https://www.linkedin.com/in/livia-ribeiro-alvarenga-800813242/) - Marketing e Desenvolvedora Front-End
 - [Lucas Padula Alves](https://www.linkedin.com/in/lucas-padula-alves-b72ba52b6/) - Database Manager e Desenvolvedor Back-End
 - [Noah Cardozo da Silva](https://www.linkedin.com/in/noah-cardozo-714224352/) - Designer e Desenvolvedor Front-End
