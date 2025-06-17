@@ -1,5 +1,10 @@
 package com.zeelus.zeelus.modules.acompanhante;
 
+import com.zeelus.zeelus.modules.acompanhado.AcompanhadoEntity;
+import com.zeelus.zeelus.modules.evento.EventoEntity;
+import com.zeelus.zeelus.modules.pergunta.PerguntaEntity;
+import com.zeelus.zeelus.modules.registro.RegistroEntity;
+import com.zeelus.zeelus.modules.respostas.RespostaEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -13,6 +18,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.validator.constraints.Length;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -46,4 +52,19 @@ public class AcompanhanteEntity {
     @UpdateTimestamp
     private LocalDateTime updateAt;
 
+    // Relacionamentos
+    @OneToMany(mappedBy = "acompanhante", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<AcompanhadoEntity> acompanhados;
+
+    @OneToMany(mappedBy = "acompanhante", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<RegistroEntity> registros;
+
+    @OneToMany(mappedBy = "acompanhante", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<PerguntaEntity> perguntas;
+
+    @OneToMany(mappedBy = "acompanhante", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<RespostaEntity> respostas;
+
+    @OneToMany(mappedBy = "acompanhante", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<EventoEntity> eventos;
 }
