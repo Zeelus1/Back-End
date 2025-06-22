@@ -1,9 +1,9 @@
-package com.zeelus.zeelus.modules.acompanhante.controller;
+package com.zeelus.zeelus.modules.cuidador.controller;
 
-import com.zeelus.zeelus.modules.acompanhante.AcompanhanteEntity;
-import com.zeelus.zeelus.modules.acompanhante.dto.CadastrarAcompanhanteDTO;
-import com.zeelus.zeelus.modules.acompanhante.dto.RespostaDTO;
-import com.zeelus.zeelus.modules.acompanhante.service.CadastrarAcompanhanteService;
+import com.zeelus.zeelus.modules.cuidador.CuidadorEntity;
+import com.zeelus.zeelus.modules.cuidador.dto.CadastrarCuidadorDTO;
+import com.zeelus.zeelus.modules.cuidador.dto.RespostaDTO;
+import com.zeelus.zeelus.modules.cuidador.service.CadastrarCuidadorService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
@@ -14,15 +14,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/acompanhante")
-public class CadastrarAcompanhanteController {
+@RequestMapping("/cuidador")
+public class CadastrarCuidadorController {
     @Autowired
-    private CadastrarAcompanhanteService cadastrarAcompanhanteService;
+    private CadastrarCuidadorService cadastrarAcompanhanteService;
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<Object> cadastrarAcompanhante(@Valid @RequestBody CadastrarAcompanhanteDTO acompanhanteDTO){
+    public ResponseEntity<Object> cadastrarAcompanhante(@Valid @RequestBody CadastrarCuidadorDTO acompanhanteDTO){
         try{
-            AcompanhanteEntity resultado = this.cadastrarAcompanhanteService.execute(acompanhanteDTO);
+            CuidadorEntity resultado = this.cadastrarAcompanhanteService.execute(acompanhanteDTO);
 
             RespostaDTO respostaDTO = new RespostaDTO(resultado, "Usuario cadastrado com sucesso.");
 

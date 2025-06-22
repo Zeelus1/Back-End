@@ -1,10 +1,9 @@
-package com.zeelus.zeelus.modules.acompanhante.controller;
+package com.zeelus.zeelus.modules.cuidador.controller;
 
-import com.zeelus.zeelus.modules.acompanhante.AcompanhanteEntity;
-import com.zeelus.zeelus.modules.acompanhante.dto.LoginAcompanhanteDTO;
-import com.zeelus.zeelus.modules.acompanhante.dto.LoginAcompanhanteResponseDTO;
-import com.zeelus.zeelus.modules.acompanhante.dto.RespostaDTO;
-import com.zeelus.zeelus.modules.acompanhante.service.LoginAcompanhanteService;
+import com.zeelus.zeelus.modules.cuidador.dto.LoginCuidadorDTO;
+import com.zeelus.zeelus.modules.cuidador.dto.LoginAcompanhanteResponseDTO;
+import com.zeelus.zeelus.modules.cuidador.dto.RespostaDTO;
+import com.zeelus.zeelus.modules.cuidador.service.LoginCuidadorService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
@@ -15,13 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/acompanhante")
-public class LoginAcompanhanteController {
+@RequestMapping("/cuidador")
+public class LoginCuidadorController {
     @Autowired
-    private LoginAcompanhanteService acompanhanteService;
+    private LoginCuidadorService acompanhanteService;
 
     @PostMapping("/login")
-    public ResponseEntity<Object> loginAcompanhante(@Valid @RequestBody LoginAcompanhanteDTO acompanhanteDTO){
+    public ResponseEntity<Object> loginAcompanhante(@Valid @RequestBody LoginCuidadorDTO acompanhanteDTO){
         try{
             LoginAcompanhanteResponseDTO result = this.acompanhanteService.execute(acompanhanteDTO);
 

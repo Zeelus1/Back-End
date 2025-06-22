@@ -17,7 +17,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
 
     @Autowired
-    private SecurityFilterAcompanhante securityFilterAcompanhante;
+    private SecurityFilterCuidador securityFilterCuidador;
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
@@ -25,11 +25,11 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> {
-                    auth.requestMatchers(HttpMethod.POST, "/acompanhante/cadastrar").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/acompanhante/login").permitAll()
+                    auth.requestMatchers(HttpMethod.POST, "/cuidador/cadastrar").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/cuidador/login").permitAll()
                         .anyRequest().authenticated();
                 })
-                .addFilterBefore(securityFilterAcompanhante, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(securityFilterCuidador, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
 

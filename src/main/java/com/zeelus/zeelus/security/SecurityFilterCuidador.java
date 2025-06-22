@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.List;
 
 @Component
-public class SecurityFilterAcompanhante extends OncePerRequestFilter {
+public class SecurityFilterCuidador extends OncePerRequestFilter {
 
     @Autowired
     private TokenProviderAcompanhante tokenProviderAcompanhante;

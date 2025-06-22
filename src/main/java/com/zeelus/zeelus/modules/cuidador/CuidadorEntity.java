@@ -1,4 +1,4 @@
-package com.zeelus.zeelus.modules.acompanhante;
+package com.zeelus.zeelus.modules.cuidador;
 
 import com.zeelus.zeelus.modules.acompanhado.AcompanhadoEntity;
 import com.zeelus.zeelus.modules.evento.EventoEntity;
@@ -28,7 +28,7 @@ import java.util.UUID;
 @Entity(name = "tbl_acompanhante")
 @DynamicUpdate
 @Table(name = "tbl_acompanhante", schema = "public")
-public class AcompanhanteEntity {
+public class CuidadorEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id_acompanhante;

@@ -1,11 +1,11 @@
-package com.zeelus.zeelus.modules.acompanhante.service;
+package com.zeelus.zeelus.modules.cuidador.service;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.zeelus.zeelus.modules.acompanhante.AcompanhanteEntity;
-import com.zeelus.zeelus.modules.acompanhante.dto.LoginAcompanhanteDTO;
-import com.zeelus.zeelus.modules.acompanhante.dto.LoginAcompanhanteResponseDTO;
-import com.zeelus.zeelus.modules.acompanhante.repository.AcompanhanteRepository;
+import com.zeelus.zeelus.modules.cuidador.CuidadorEntity;
+import com.zeelus.zeelus.modules.cuidador.dto.LoginCuidadorDTO;
+import com.zeelus.zeelus.modules.cuidador.dto.LoginAcompanhanteResponseDTO;
+import com.zeelus.zeelus.modules.cuidador.repository.CuidadorRepository;
 import jakarta.security.auth.message.AuthException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,9 +17,9 @@ import java.time.Instant;
 import java.util.Arrays;
 
 @Service
-public class LoginAcompanhanteService {
+public class LoginCuidadorService {
     @Autowired
-    private AcompanhanteRepository acompanhanteRepository;
+    private CuidadorRepository acompanhanteRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -27,8 +27,8 @@ public class LoginAcompanhanteService {
     @Value("${security.token.secret}")
     private String secretToken;
 
-    public LoginAcompanhanteResponseDTO execute(LoginAcompanhanteDTO acompanhanteDTO) throws AuthException {
-        AcompanhanteEntity acompanhanteEntity = this.acompanhanteRepository.findByEmail(acompanhanteDTO.getEmail())
+    public LoginAcompanhanteResponseDTO execute(LoginCuidadorDTO acompanhanteDTO) throws AuthException {
+        CuidadorEntity acompanhanteEntity = this.acompanhanteRepository.findByEmail(acompanhanteDTO.getEmail())
                 .orElseThrow(() -> {
                     throw new RuntimeException("E-mail não encontrado!");
                 });

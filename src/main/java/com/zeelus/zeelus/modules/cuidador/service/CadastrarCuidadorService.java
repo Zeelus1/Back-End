@@ -1,23 +1,23 @@
-package com.zeelus.zeelus.modules.acompanhante.service;
+package com.zeelus.zeelus.modules.cuidador.service;
 
-import com.zeelus.zeelus.modules.acompanhante.AcompanhanteEntity;
-import com.zeelus.zeelus.modules.acompanhante.dto.CadastrarAcompanhanteDTO;
-import com.zeelus.zeelus.modules.acompanhante.repository.AcompanhanteRepository;
+import com.zeelus.zeelus.modules.cuidador.CuidadorEntity;
+import com.zeelus.zeelus.modules.cuidador.dto.CadastrarCuidadorDTO;
+import com.zeelus.zeelus.modules.cuidador.repository.CuidadorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class CadastrarAcompanhanteService {
+public class CadastrarCuidadorService {
     @Autowired
-    private AcompanhanteRepository acompanhanteRepository;
+    private CuidadorRepository acompanhanteRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Transactional
-    public AcompanhanteEntity execute(CadastrarAcompanhanteDTO cadastrarAcompanhanteDTO){
+    public CuidadorEntity execute(CadastrarCuidadorDTO cadastrarAcompanhanteDTO){
         this.acompanhanteRepository.findByEmail(cadastrarAcompanhanteDTO.getEmail())
                 .ifPresent(value -> {
                     throw new RuntimeException("E-mail já foi cadastrado!");
@@ -25,7 +25,7 @@ public class CadastrarAcompanhanteService {
 
         String password = passwordEncoder.encode(cadastrarAcompanhanteDTO.getSenha());
 
-        AcompanhanteEntity acompanhante = AcompanhanteEntity.builder()
+        CuidadorEntity acompanhante = CuidadorEntity.builder()
                 .nome_acompanhante(cadastrarAcompanhanteDTO.getNome_acompanhante())
                 .email(cadastrarAcompanhanteDTO.getEmail())
                 .senha(password)

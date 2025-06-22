@@ -1,4 +1,4 @@
-package com.zeelus.zeelus.modules.acompanhante.dto;
+package com.zeelus.zeelus.modules.cuidador.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -6,7 +6,7 @@ import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
 @Data
-public class CadastrarAcompanhanteDTO {
+public class CadastrarCuidadorDTO {
     @NotBlank(message = "O campo (nome_acompanhante) não pode estar vazio")
     private String nome_acompanhante;
 
