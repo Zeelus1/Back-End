@@ -1,9 +1,10 @@
 package com.zeelus.zeelus.modules.acompanhado;
 
-import com.zeelus.zeelus.modules.acompanhante.AcompanhanteEntity;
+import com.zeelus.zeelus.modules.cuidador.CuidadorEntity;
 import com.zeelus.zeelus.modules.anamnese.AnamneseEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -31,7 +32,7 @@ public class AcompanhadoEntity {
     @NotBlank(message = "O campo (nome_acompanhado) não pode estar vazio.")
     private String nome_acompanhado;
 
-    @NotBlank(message = "O campo (data_nascimento) não pode estar vazio.")
+    @NotNull(message = "O campo (data_nascimento) não pode estar vazio.")
     private LocalDate data_nascimento;
 
     @NotBlank(message = "O campo (genero) não pode estar vazio.")
@@ -45,8 +46,8 @@ public class AcompanhadoEntity {
 
     // Relacionamentos
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "pk_id_acompanhante")
-    private AcompanhanteEntity acompanhante;
+    @JoinColumn(name = "pk_id_cuidador")
+    private CuidadorEntity cuidador;
 
     @OneToOne(mappedBy = "acompanhado", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private AnamneseEntity anamnese;

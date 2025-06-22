@@ -1,4 +1,4 @@
-package com.zeelus.zeelus.modules.acompanhante.dto;
+package com.zeelus.zeelus.modules.cuidador.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

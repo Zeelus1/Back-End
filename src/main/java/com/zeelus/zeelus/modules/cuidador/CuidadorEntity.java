@@ -1,5 +1,6 @@
 package com.zeelus.zeelus.modules.cuidador;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.zeelus.zeelus.modules.acompanhado.AcompanhadoEntity;
 import com.zeelus.zeelus.modules.evento.EventoEntity;
 import com.zeelus.zeelus.modules.pergunta.PerguntaEntity;
@@ -53,18 +54,23 @@ public class CuidadorEntity {
     private LocalDateTime updateAt;
 
     // Relacionamentos
-    @OneToMany(mappedBy = "acompanhante", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
+    @OneToMany(mappedBy = "cuidador", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<AcompanhadoEntity> acompanhados;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "acompanhante", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<RegistroEntity> registros;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "acompanhante", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<PerguntaEntity> perguntas;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "acompanhante", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<RespostaEntity> respostas;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "acompanhante", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<EventoEntity> eventos;
 }

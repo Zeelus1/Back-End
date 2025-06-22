@@ -45,7 +45,7 @@ public class LoginCuidadorService {
 
         String token = JWT.create()
                 .withSubject(acompanhanteEntity.getId_acompanhante().toString())
-                .withClaim("roles", Arrays.asList("ACOMPANHANTE"))
+                .withClaim("roles", Arrays.asList("CUIDADOR"))
                 .withExpiresAt(expireIn)
                 .withIssuer("Zeelus") //nome de quem assina
                 .sign(algorithm);
