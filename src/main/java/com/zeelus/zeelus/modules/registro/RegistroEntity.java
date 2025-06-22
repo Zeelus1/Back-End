@@ -1,6 +1,6 @@
 package com.zeelus.zeelus.modules.registro;
 
-import com.zeelus.zeelus.modules.acompanhante.AcompanhanteEntity;
+import com.zeelus.zeelus.modules.cuidador.CuidadorEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -37,5 +37,5 @@ public class RegistroEntity {
     // Relacionamentos
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pk_id_acompanhante")
-    private AcompanhanteEntity acompanhante;
+    private CuidadorEntity acompanhante;
 }

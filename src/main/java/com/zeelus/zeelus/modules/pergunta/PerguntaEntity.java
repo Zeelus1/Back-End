@@ -1,6 +1,6 @@
 package com.zeelus.zeelus.modules.pergunta;
 
-import com.zeelus.zeelus.modules.acompanhante.AcompanhanteEntity;
+import com.zeelus.zeelus.modules.cuidador.CuidadorEntity;
 import com.zeelus.zeelus.modules.respostas.RespostaEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -44,7 +44,7 @@ public class PerguntaEntity {
     // Relacionamentos
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pk_id_acompanhante")
-    private AcompanhanteEntity acompanhante;
+    private CuidadorEntity acompanhante;
 
     @OneToMany(mappedBy = "pergunta", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<RespostaEntity> respostas;
