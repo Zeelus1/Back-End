@@ -1,6 +1,8 @@
 package com.zeelus.zeelus.modules.cuidador;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.zeelus.zeelus.modules.acompanhado.AcompanhadoEntity;
 import com.zeelus.zeelus.modules.evento.EventoEntity;
 import com.zeelus.zeelus.modules.pergunta.PerguntaEntity;
@@ -29,6 +31,8 @@ import java.util.UUID;
 @Entity(name = "tbl_acompanhante")
 @DynamicUpdate
 @Table(name = "tbl_acompanhante", schema = "public")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id_acompanhante")
 public class CuidadorEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -54,23 +58,23 @@ public class CuidadorEntity {
     private LocalDateTime updateAt;
 
     // Relacionamentos
-    @JsonIgnore
     @OneToMany(mappedBy = "cuidador", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("cuidador")
     private List<AcompanhadoEntity> acompanhados;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "acompanhante", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("acompanhante")
     private List<RegistroEntity> registros;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "acompanhante", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("acompanhante")
     private List<PerguntaEntity> perguntas;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "acompanhante", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("acompanhante")
     private List<RespostaEntity> respostas;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "acompanhante", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("acompanhante")
     private List<EventoEntity> eventos;
 }

@@ -1,5 +1,8 @@
 package com.zeelus.zeelus.modules.acompanhado;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.zeelus.zeelus.modules.cuidador.CuidadorEntity;
 import com.zeelus.zeelus.modules.anamnese.AnamneseEntity;
 import jakarta.persistence.*;
@@ -24,6 +27,8 @@ import java.util.UUID;
 @Entity(name = "tbl_acompanhado")
 @DynamicUpdate
 @Table(name = "tbl_acompanhado", schema = "public")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id_acompanhado")
 public class AcompanhadoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

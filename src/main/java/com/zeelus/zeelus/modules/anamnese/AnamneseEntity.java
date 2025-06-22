@@ -1,5 +1,8 @@
 package com.zeelus.zeelus.modules.anamnese;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.zeelus.zeelus.modules.acompanhado.AcompanhadoEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -18,6 +21,8 @@ import java.util.UUID;
 @Entity(name = "tbl_anamnese")
 @DynamicUpdate
 @Table(name = "tbl_anamnese", schema = "public")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id_anamnese")
 public class AnamneseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

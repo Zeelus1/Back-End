@@ -1,4 +1,17 @@
 package com.zeelus.zeelus.modules.cuidador.dto;
 
-public record RespostaDTO(Object object, String message) {
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class RespostaDTO {
+    private Object data;
+    private String mensagem;
+    
+    public RespostaDTO(String mensagem) {
+        this.mensagem = mensagem;
+    }
 }
