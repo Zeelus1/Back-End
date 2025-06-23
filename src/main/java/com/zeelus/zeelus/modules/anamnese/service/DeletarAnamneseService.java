@@ -7,8 +7,6 @@ import com.zeelus.zeelus.modules.anamnese.repository.AnamneseRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.PersistenceContext;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,7 +15,6 @@ import java.util.UUID;
 
 @Service
 public class DeletarAnamneseService {
-    private static final Logger logger = LoggerFactory.getLogger(DeletarAnamneseService.class);
     
     @Autowired
     private AnamneseRepository anamneseRepository;
@@ -40,15 +37,12 @@ public class DeletarAnamneseService {
                 () -> {
                     throw new EntityNotFoundException("Anamnese não encontrada.");
                 });
-        
-        // Remove a referência bidirecional
+
         acompanhado.setAnamnese(null);
         anamnese.setAcompanhado(null);
-        
-        // Persiste a mudança no acompanhado
+
         acompanhadoRepository.save(acompanhado);
-        
-        // Deleta a anamnese
+
         this.anamneseRepository.delete(anamnese);
 
         return "Anamnese excluída com sucesso.";
