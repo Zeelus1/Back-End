@@ -4,6 +4,10 @@ import com.zeelus.zeelus.modules.cuidador.CuidadorEntity;
 import com.zeelus.zeelus.modules.cuidador.dto.CadastrarCuidadorDTO;
 import com.zeelus.zeelus.modules.cuidador.dto.RespostaDTO;
 import com.zeelus.zeelus.modules.cuidador.service.CadastrarCuidadorService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
@@ -19,6 +23,10 @@ public class CadastrarCuidadorController {
     @Autowired
     private CadastrarCuidadorService cadastrarAcompanhanteService;
 
+    @Operation(summary = "Cadastrar cuidador", description = "Este endpoint realizara o cadastro do cuidador e armazenara os dados dele no banco de dados")
+    @ApiResponse(responseCode = "201", content = {
+            @Content(schema = @Schema(implementation = CuidadorEntity.class))
+    })
     @PostMapping("/cadastrar")
     public ResponseEntity<Object> cadastrarAcompanhante(@Valid @RequestBody CadastrarCuidadorDTO acompanhanteDTO){
         try{

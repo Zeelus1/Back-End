@@ -18,6 +18,12 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 @EnableWebSecurity
 public class SecurityConfig {
 
+    private static final String[] SWAGGER_LIST = {
+            "/swagger-ui/**",
+            "/v3/api-docs/**",
+            "/swagger-resources/**"
+    };
+
     @Autowired
     private SecurityFilterCuidador securityFilterCuidador;
 
@@ -29,6 +35,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers(HttpMethod.POST, "/cuidador/cadastrar").permitAll()
                         .requestMatchers(HttpMethod.POST, "/cuidador/login").permitAll()
+                        .requestMatchers(SWAGGER_LIST).permitAll()
                         .anyRequest().authenticated();
                 })
                 .addFilterBefore(securityFilterCuidador, BasicAuthenticationFilter.class)
