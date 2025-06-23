@@ -37,7 +37,7 @@ public class AnamneseEntity {
     private String necessidades;
 
     // Relacionamentos
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "pk_id_acompanhado")
     private AcompanhadoEntity acompanhado;
 }
