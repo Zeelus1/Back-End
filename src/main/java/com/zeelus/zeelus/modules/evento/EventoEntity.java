@@ -3,6 +3,7 @@ package com.zeelus.zeelus.modules.evento;
 import com.zeelus.zeelus.modules.cuidador.CuidadorEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,6 +25,7 @@ public class EventoEntity {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id_eventos;
 
+    @NotNull(message = "O campo (data) não pode estar vazio.")
     private LocalDate data;
 
 
