@@ -76,6 +76,24 @@ Oferecer suporte e ferramentas essenciais aos acompanhantes, tornando a experiê
 
 ---
 
+## 📚 Documentação da API (Swagger)
+
+Para acessar a documentação interativa da API, siga os passos abaixo:
+
+1. Certifique-se de que a aplicação está rodando
+2. Acesse a interface do Swagger UI através da URL:
+   ```
+   http://localhost:8080/swagger-ui/index.html
+   ```
+
+Através desta interface você poderá:
+- Visualizar todos os endpoints disponíveis
+- Testar as requisições diretamente pelo navegador
+- Ver os modelos de dados e respostas
+- Entender os parâmetros necessários para cada rota
+
+---
+
 ## **Como Executar o Projeto**
 
 1. Clone o repositório:
