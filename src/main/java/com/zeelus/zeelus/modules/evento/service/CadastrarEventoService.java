@@ -3,7 +3,7 @@ package com.zeelus.zeelus.modules.evento.service;
 import com.zeelus.zeelus.modules.cuidador.CuidadorEntity;
 import com.zeelus.zeelus.modules.cuidador.repository.CuidadorRepository;
 import com.zeelus.zeelus.modules.evento.EventoEntity;
-import com.zeelus.zeelus.modules.evento.dto.EventoDTO;
+import com.zeelus.zeelus.modules.evento.dto.EventoCadastroDTO;
 import com.zeelus.zeelus.modules.evento.repository.EventoRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class CadastrarEventoService {
     private CuidadorRepository cuidadorRepository;
 
     @Transactional
-    public EventoEntity execute(UUID idCuidador, EventoDTO eventoDTO){
+    public EventoEntity execute(UUID idCuidador, EventoCadastroDTO eventoDTO){
         CuidadorEntity cuidador = this.cuidadorRepository.findById(idCuidador).orElseThrow(() -> {
             throw new EntityNotFoundException("Cuidador não encontrado");
         });
@@ -30,7 +30,7 @@ public class CadastrarEventoService {
                 .data(eventoDTO.getData())
                 .titulo(eventoDTO.getTitulo())
                 .descricao(eventoDTO.getDescricao())
-                .acompanhante(cuidador)
+                .cuidador(cuidador)
                 .build();
 
         return this.eventoRepository.save(evento);

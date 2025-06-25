@@ -2,13 +2,12 @@ package com.zeelus.zeelus.modules.evento.controller;
 
 import com.zeelus.zeelus.modules.cuidador.dto.RespostaDTO;
 import com.zeelus.zeelus.modules.evento.EventoEntity;
-import com.zeelus.zeelus.modules.evento.dto.EventoDTO;
+import com.zeelus.zeelus.modules.evento.dto.EventoCadastroDTO;
 import com.zeelus.zeelus.modules.evento.dto.EventoResponseDTO;
 import com.zeelus.zeelus.modules.evento.service.CadastrarEventoService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -27,7 +26,7 @@ public class CadastrarEventoController {
 
     @PreAuthorize("hasRole('CUIDADOR')")
     @PostMapping("/cadastrar")
-    public ResponseEntity<Object> execute(HttpServletRequest request, @Valid @RequestBody EventoDTO eventoDTO) {
+    public ResponseEntity<Object> execute(HttpServletRequest request, @Valid @RequestBody EventoCadastroDTO eventoDTO) {
         try{
             String userId = (String) request.getAttribute("acompanhante_id");
             UUID cuidadorId = UUID.fromString(userId);

@@ -23,11 +23,11 @@ import java.util.UUID;
 public class EventoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "id_eventos")
     private UUID id_eventos;
 
     @NotNull(message = "O campo (data) não pode estar vazio.")
     private LocalDate data;
-
 
     @NotBlank(message = "O campo (titulo) não pode estar vazio.")
     private String titulo;
@@ -37,6 +37,6 @@ public class EventoEntity {
 
     // Relacionamentos
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "pk_id_acompanhante")
-    private CuidadorEntity acompanhante;
+    @JoinColumn(name = "pk_id_cuidador")
+    private CuidadorEntity cuidador;
 }
