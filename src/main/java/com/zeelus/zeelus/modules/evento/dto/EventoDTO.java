@@ -1,20 +1,22 @@
 package com.zeelus.zeelus.modules.evento.dto;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import com.zeelus.zeelus.modules.evento.EventoEntity;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Data
 public class EventoDTO {
-    @NotNull(message = "O campo (data) não pode estar vazio.")
+    private UUID id_eventos;
     private LocalDate data;
-
-
-    @NotBlank(message = "O campo (titulo) não pode estar vazio.")
     private String titulo;
-
-    @NotBlank(message = "O campo (descricao) não pode estar vazio.")
     private String descricao;
+
+    public EventoDTO(EventoEntity evento) {
+        this.id_eventos = evento.getId_eventos();
+        this.data = evento.getData();
+        this.titulo = evento.getTitulo();
+        this.descricao = evento.getDescricao();
+    }
 }

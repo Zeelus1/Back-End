@@ -12,13 +12,13 @@ public class EventoResponseDTO {
     private LocalDate data;
     private String titulo;
     private String descricao;
-    private UUID acompanhanteId;
+    private UUID cuidadorId;
 
     public EventoResponseDTO(EventoEntity entity) {
         this.id_eventos = entity.getId_eventos();
         this.data = entity.getData();
         this.titulo = entity.getTitulo();
         this.descricao = entity.getDescricao();
-        this.acompanhanteId = entity.getAcompanhante().getId_acompanhante();
+        this.cuidadorId = entity.getCuidador().getId_cuidador();
     }
 } 
