@@ -32,14 +32,15 @@ import java.util.UUID;
 @DynamicUpdate
 @Table(name = "tbl_acompanhante", schema = "public")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id_acompanhante")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id_cuidador")
 public class CuidadorEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id_acompanhante;
+    @Column(name = "id_cuidador")
+    private UUID id_cuidador;
 
     @NotBlank(message = "O campo (nome_acompanhante) não pode estar vazio")
-    private String nome_acompanhante;
+    private String nome_cuidador;
 
     @NotBlank(message = "O campo (email) não pode estar vazio")
     @Email(message = "O campo (email) deve receber um e-mail valido.")
@@ -74,7 +75,7 @@ public class CuidadorEntity {
     @JsonIgnoreProperties("acompanhante")
     private List<RespostaEntity> respostas;
 
-    @OneToMany(mappedBy = "acompanhante", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonIgnoreProperties("acompanhante")
+    @OneToMany(mappedBy = "cuidador", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("cuidador")
     private List<EventoEntity> eventos;
 }

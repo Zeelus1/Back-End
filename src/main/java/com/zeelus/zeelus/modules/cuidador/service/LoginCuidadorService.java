@@ -44,7 +44,7 @@ public class LoginCuidadorService {
         Instant expireIn = Instant.now().plus(Duration.ofHours(24));
 
         String token = JWT.create()
-                .withSubject(acompanhanteEntity.getId_acompanhante().toString())
+                .withSubject(acompanhanteEntity.getId_cuidador().toString())
                 .withClaim("roles", Arrays.asList("CUIDADOR"))
                 .withExpiresAt(expireIn)
                 .withIssuer("Zeelus") //nome de quem assina

@@ -19,6 +19,6 @@ public class CadastrarAcompanhadoResponseDTO {
         this.nome_acompanhado = entity.getNome_acompanhado();
         this.data_nascimento = entity.getData_nascimento();
         this.genero = entity.getGenero();
-        this.cuidadorId = entity.getCuidador().getId_acompanhante();
+        this.cuidadorId = entity.getCuidador().getId_cuidador();
     }
 } 

@@ -26,7 +26,7 @@ public class CadastrarCuidadorService {
         String password = passwordEncoder.encode(cadastrarAcompanhanteDTO.getSenha());
 
         CuidadorEntity acompanhante = CuidadorEntity.builder()
-                .nome_acompanhante(cadastrarAcompanhanteDTO.getNome_acompanhante())
+                .nome_cuidador(cadastrarAcompanhanteDTO.getNome_acompanhante())
                 .email(cadastrarAcompanhanteDTO.getEmail())
                 .senha(password)
                 .urlImg(cadastrarAcompanhanteDTO.getUrlImg())
