@@ -4,6 +4,7 @@ import com.zeelus.zeelus.modules.cuidador.CuidadorEntity;
 import com.zeelus.zeelus.modules.respostas.RespostaEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -33,18 +34,18 @@ public class PerguntaEntity {
     @Column(name = "descricao", columnDefinition = "TEXT")
     private String descricao;
 
-    @NotBlank(message = "O campo (data) não pode estar vazio.")
+    @NotNull(message = "O campo (data) não pode estar vazio.")
     private LocalDate data;
 
-    @NotBlank(message = "O campo (datat) não pode estar vazio.")
+    @NotBlank(message = "O campo (tag) não pode estar vazio.")
     private String tag;
 
     private Integer curtidas = 0;
 
     // Relacionamentos
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "pk_id_acompanhante")
-    private CuidadorEntity acompanhante;
+    @JoinColumn(name = "pk_id_cuidador")
+    private CuidadorEntity cuidador;
 
     @OneToMany(mappedBy = "pergunta", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<RespostaEntity> respostas;

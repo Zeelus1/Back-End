@@ -1,6 +1,7 @@
 package com.zeelus.zeelus.modules.cuidador;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.zeelus.zeelus.modules.acompanhado.AcompanhadoEntity;
@@ -60,22 +61,22 @@ public class CuidadorEntity {
 
     // Relacionamentos
     @OneToMany(mappedBy = "cuidador", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonIgnoreProperties("cuidador")
+    @JsonIgnore
     private List<AcompanhadoEntity> acompanhados;
 
     @OneToMany(mappedBy = "acompanhante", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonIgnoreProperties("acompanhante")
+    @JsonIgnore
     private List<RegistroEntity> registros;
 
-    @OneToMany(mappedBy = "acompanhante", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonIgnoreProperties("acompanhante")
+    @OneToMany(mappedBy = "cuidador", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<PerguntaEntity> perguntas;
 
     @OneToMany(mappedBy = "acompanhante", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonIgnoreProperties("acompanhante")
+    @JsonIgnore
     private List<RespostaEntity> respostas;
 
     @OneToMany(mappedBy = "cuidador", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonIgnoreProperties("cuidador")
+    @JsonIgnore
     private List<EventoEntity> eventos;
 }
