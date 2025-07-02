@@ -8,6 +8,8 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
@@ -19,13 +21,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/cuidador")
+@Tag(name = "Cuidador", description = "Endpoints para gerenciamento de cuidadores")
 public class CadastrarCuidadorController {
     @Autowired
     private CadastrarCuidadorService cadastrarAcompanhanteService;
 
-    @Operation(summary = "Cadastrar cuidador", description = "Este endpoint realizara o cadastro do cuidador e armazenara os dados dele no banco de dados")
-    @ApiResponse(responseCode = "201", content = {
-            @Content(schema = @Schema(implementation = CuidadorEntity.class))
+    @Operation(
+        summary = "Cadastrar cuidador", 
+        description = "Este endpoint realiza o cadastro de um novo cuidador no sistema. O cuidador é o usuário principal que gerenciará acompanhados e suas anamneses."
+    )
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "201", description = "Cuidador cadastrado com sucesso",
+            content = @Content(schema = @Schema(implementation = CuidadorEntity.class))),
+        @ApiResponse(responseCode = "400", description = "Dados inválidos ou erro no cadastro",
+            content = @Content(schema = @Schema(implementation = RespostaDTO.class)))
     })
     @PostMapping("/cadastrar")
     public ResponseEntity<Object> cadastrarAcompanhante(@Valid @RequestBody CadastrarCuidadorDTO acompanhanteDTO){
