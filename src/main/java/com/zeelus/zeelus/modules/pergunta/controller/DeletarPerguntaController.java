@@ -25,7 +25,7 @@ public class DeletarPerguntaController {
     @PreAuthorize("hasRole('CUIDADOR')")
     public ResponseEntity<Object> execute(HttpServletRequest request, @PathVariable UUID idPergunta){
         try{
-            String userId = (String) request.getAttribute("acompanhante_id");
+            String userId = (String) request.getAttribute("cuidador_id");
             UUID cuidadorId = UUID.fromString(userId);
 
             String result = this.deletarPerguntaService.execute(idPergunta, cuidadorId);

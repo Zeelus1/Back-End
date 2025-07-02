@@ -38,7 +38,7 @@ public class SecurityFilterCuidador extends OncePerRequestFilter {
 
             String subject = token.getSubject();
 
-            request.setAttribute("acompanhante_id", subject);
+            request.setAttribute("cuidador_id", subject);
 
             List<Object> roles = token.getClaim("roles").asList(Object.class);
 

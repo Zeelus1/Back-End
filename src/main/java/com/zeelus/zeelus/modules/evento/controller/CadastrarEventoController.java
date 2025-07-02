@@ -28,7 +28,7 @@ public class CadastrarEventoController {
     @PostMapping("/cadastrar")
     public ResponseEntity<Object> execute(HttpServletRequest request, @Valid @RequestBody EventoCadastroDTO eventoDTO) {
         try{
-            String userId = (String) request.getAttribute("acompanhante_id");
+            String userId = (String) request.getAttribute("cuidador_id");
             UUID cuidadorId = UUID.fromString(userId);
 
             EventoEntity result = this.cadastrarEventoService.execute(cuidadorId, eventoDTO);

@@ -27,7 +27,7 @@ public class PegarEventosController {
     @GetMapping
     public ResponseEntity<Object> execute(HttpServletRequest request){
         try{
-            String userId = (String) request.getAttribute("acompanhante_id");
+            String userId = (String) request.getAttribute("cuidador_id");
             UUID cuidadorId = UUID.fromString(userId);
 
             EventoListResponseDTO evento = this.pegarEventosService.execute(cuidadorId);

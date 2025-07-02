@@ -28,7 +28,7 @@ public class PegarPerguntaController {
     @PreAuthorize("hasRole('CUIDADOR')")
     public ResponseEntity<Object> execute(HttpServletRequest request){
         try{
-            String userId = (String) request.getAttribute("acompanhante_id");
+            String userId = (String) request.getAttribute("cuidador_id");
             UUID cuidadorId = UUID.fromString(userId);
 
             List<PerguntaEntity> perguntas = this.perguntaService.execute(cuidadorId);

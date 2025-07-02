@@ -28,7 +28,7 @@ public class CadastrarPerguntaController {
     @PostMapping("/cadastrar")
     @PreAuthorize("hasRole('CUIDADOR')")
     public ResponseEntity<Object> execute(HttpServletRequest request, @Valid @RequestBody PerguntaDTO perguntaDTO){
-        String userId = (String) request.getAttribute("acompanhante_id");
+        String userId = (String) request.getAttribute("cuidador_id");
         UUID cuidadorId = UUID.fromString(userId);
 
         try{
