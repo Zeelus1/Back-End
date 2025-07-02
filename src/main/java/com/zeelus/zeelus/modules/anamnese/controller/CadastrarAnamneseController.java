@@ -4,6 +4,12 @@ import com.zeelus.zeelus.modules.anamnese.AnamneseEntity;
 import com.zeelus.zeelus.modules.anamnese.dto.AnamneseDTO;
 import com.zeelus.zeelus.modules.anamnese.service.CadastrarAnamneseService;
 import com.zeelus.zeelus.modules.cuidador.dto.RespostaDTO;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.Valid;
 import org.hibernate.engine.jdbc.spi.SqlExceptionHelper;
@@ -15,11 +21,19 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/anamnese")
+@Tag(name = "Anamnese", description = "Endpoints para gerenciamento de anamneses")
 public class CadastrarAnamneseController {
 
     @Autowired
     private CadastrarAnamneseService cadastrarAnamneseService;
 
+    @Operation(summary = "Cadastrar anamnese", description = "Este endpoint realiza o cadastro de uma nova anamnese para um acompanhado")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "201", description = "Anamnese cadastrada com sucesso",
+            content = @Content(schema = @Schema(implementation = AnamneseEntity.class))),
+        @ApiResponse(responseCode = "400", description = "Dados inválidos",
+            content = @Content(schema = @Schema(implementation = RespostaDTO.class)))
+    })
     @PostMapping("/cadastrar")
     @PreAuthorize("hasRole('CUIDADOR')")
     public ResponseEntity<Object> execute(@Valid @RequestBody AnamneseDTO dto){
