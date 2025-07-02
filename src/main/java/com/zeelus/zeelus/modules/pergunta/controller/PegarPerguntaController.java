@@ -4,6 +4,12 @@ import com.zeelus.zeelus.modules.cuidador.dto.RespostaDTO;
 import com.zeelus.zeelus.modules.pergunta.PerguntaEntity;
 import com.zeelus.zeelus.modules.pergunta.dto.PerguntaResponseDTO;
 import com.zeelus.zeelus.modules.pergunta.service.PegarPerguntaService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,11 +25,19 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/pergunta")
+@Tag(name = "Perguntas", description = "Endpoints para gerenciamento de perguntas")
 public class PegarPerguntaController {
 
     @Autowired
     private PegarPerguntaService perguntaService;
 
+    @Operation(summary = "Buscar perguntas", description = "Este endpoint retorna todas as perguntas cadastradas pelo cuidador")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Perguntas encontradas com sucesso",
+            content = @Content(schema = @Schema(implementation = PerguntaResponseDTO.class))),
+        @ApiResponse(responseCode = "400", description = "Erro ao buscar perguntas",
+            content = @Content(schema = @Schema(implementation = RespostaDTO.class)))
+    })
     @GetMapping("/pegar")
     @PreAuthorize("hasRole('CUIDADOR')")
     public ResponseEntity<Object> execute(HttpServletRequest request){

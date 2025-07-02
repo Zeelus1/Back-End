@@ -5,6 +5,12 @@ import com.zeelus.zeelus.modules.pergunta.dto.PerguntaDTO;
 import com.zeelus.zeelus.modules.pergunta.dto.PerguntaResponseDTO;
 import com.zeelus.zeelus.modules.pergunta.service.CadastrarPerguntaService;
 import com.zeelus.zeelus.modules.respostas.RespostaEntity;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +26,19 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/pergunta")
+@Tag(name = "Perguntas", description = "Endpoints para gerenciamento de perguntas")
 public class CadastrarPerguntaController {
 
     @Autowired
     private CadastrarPerguntaService cadastrarPerguntaService;
 
+    @Operation(summary = "Cadastrar pergunta", description = "Este endpoint realiza o cadastro de uma nova pergunta para o cuidador")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "201", description = "Pergunta cadastrada com sucesso",
+            content = @Content(schema = @Schema(implementation = PerguntaResponseDTO.class))),
+        @ApiResponse(responseCode = "400", description = "Erro ao cadastrar pergunta",
+            content = @Content(schema = @Schema(implementation = RespostaDTO.class)))
+    })
     @PostMapping("/cadastrar")
     @PreAuthorize("hasRole('CUIDADOR')")
     public ResponseEntity<Object> execute(HttpServletRequest request, @Valid @RequestBody PerguntaDTO perguntaDTO){
