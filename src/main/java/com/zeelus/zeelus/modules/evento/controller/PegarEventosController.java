@@ -5,6 +5,12 @@ import com.zeelus.zeelus.modules.evento.EventoEntity;
 import com.zeelus.zeelus.modules.evento.dto.EventoListResponseDTO;
 import com.zeelus.zeelus.modules.evento.dto.EventoResponseDTO;
 import com.zeelus.zeelus.modules.evento.service.PegarEventosService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,10 +25,18 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/evento")
+@Tag(name = "Eventos", description = "Endpoints para gerenciamento de eventos")
 public class PegarEventosController {
     @Autowired
     private PegarEventosService pegarEventosService;
 
+    @Operation(summary = "Buscar eventos", description = "Este endpoint retorna todos os eventos cadastrados pelo cuidador")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "202", description = "Eventos encontrados com sucesso",
+            content = @Content(schema = @Schema(implementation = EventoListResponseDTO.class))),
+        @ApiResponse(responseCode = "400", description = "Erro ao buscar eventos",
+            content = @Content(schema = @Schema(implementation = RespostaDTO.class)))
+    })
     @PreAuthorize("hasRole('CUIDADOR')")
     @GetMapping
     public ResponseEntity<Object> execute(HttpServletRequest request){

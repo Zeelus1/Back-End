@@ -5,6 +5,12 @@ import com.zeelus.zeelus.modules.evento.EventoEntity;
 import com.zeelus.zeelus.modules.evento.dto.EventoCadastroDTO;
 import com.zeelus.zeelus.modules.evento.dto.EventoResponseDTO;
 import com.zeelus.zeelus.modules.evento.service.CadastrarEventoService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +26,18 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/evento")
+@Tag(name = "Eventos", description = "Endpoints para gerenciamento de eventos")
 public class CadastrarEventoController {
     @Autowired
     private CadastrarEventoService cadastrarEventoService;
 
+    @Operation(summary = "Cadastrar evento", description = "Este endpoint realiza o cadastro de um novo evento")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "202", description = "Evento cadastrado com sucesso",
+            content = @Content(schema = @Schema(implementation = EventoResponseDTO.class))),
+        @ApiResponse(responseCode = "400", description = "Dados inválidos",
+            content = @Content(schema = @Schema(implementation = RespostaDTO.class)))
+    })
     @PreAuthorize("hasRole('CUIDADOR')")
     @PostMapping("/cadastrar")
     public ResponseEntity<Object> execute(HttpServletRequest request, @Valid @RequestBody EventoCadastroDTO eventoDTO) {
